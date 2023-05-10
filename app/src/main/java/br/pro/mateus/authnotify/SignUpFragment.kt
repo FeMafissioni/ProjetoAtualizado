@@ -15,8 +15,6 @@ import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
@@ -55,6 +53,11 @@ class SignUpFragment : Fragment() {
                 binding.etTelefone.text.toString(),
                 binding.etEmail.text.toString(),
                 binding.etPassword.text.toString(),
+                binding.etEnd1.text.toString(),
+                binding.etEnd2.text.toString(),
+                binding.etEnd3.text.toString(),
+                binding.etCurriculo.text.toString(),
+
                 (activity as MainActivity).getFcmToken()
             );
         }
@@ -79,7 +82,17 @@ class SignUpFragment : Fragment() {
         imm.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
 
-    private fun signUpNewAccount(nome: String, telefone: String, email: String, password: String, fcmToken: String) {
+    private fun signUpNewAccount(
+        nome: String,
+        telefone: String,
+        email: String,
+        password: String,
+        endereco1: String,
+        endereco2: String,
+        endereco3: String,
+        curriculo: String,
+        fcmToken: String,
+    ) {
         auth = Firebase.auth
         // auth.useEmulator("127.0.0.1", 5001)
         // invocar a função e receber o retorno fazendo Cast para "CustomResponse"
@@ -92,12 +105,12 @@ class SignUpFragment : Fragment() {
                     val user = auth.currentUser
                     (activity as MainActivity).storeUserId(user!!.uid)
                     // atualizar o perfil do usuário com os dados chamando a function.
-                    updateUserProfile(nome, telefone, email, user!!.uid, fcmToken)
+                    updateUserProfile(nome, telefone, email, user!!.uid, fcmToken, endereco1, endereco2, endereco3, curriculo)
                         .addOnCompleteListener(requireActivity()) { res ->
                             // conta criada com sucesso.
                             if(res.result.status == "SUCCESS"){
                                 hideKeyboard()
-                                Snackbar.make(requireView(),"Conta cadastrada! Pode fazer o login!",Snackbar.LENGTH_LONG).show()
+                                Snackbar.make(requireView(),"Conta cadastrada! Realize o login!",Snackbar.LENGTH_LONG).show()
                                 findNavController().navigate(R.id.action_signup_to_login)
                             }
                         }
@@ -112,7 +125,7 @@ class SignUpFragment : Fragment() {
             }
     }
 
-    private fun updateUserProfile(nome: String, telefone: String, email: String, uid: String, fcmToken: String) : Task<CustomResponse>{
+    private fun updateUserProfile(nome: String, telefone: String, email: String, uid: String, fcmToken: String, endereco1: String, endereco2: String, endereco3: String, curriculo: String) : Task<CustomResponse>{
         // chamar a function para atualizar o perfil.
         functions = Firebase.functions("southamerica-east1")
 
@@ -122,11 +135,16 @@ class SignUpFragment : Fragment() {
             "telefone" to telefone,
             "email" to email,
             "uid" to uid,
-            "fcmToken" to fcmToken
+            "fcmToken" to fcmToken,
+            "endereco 1" to endereco1,
+            "endereco 2" to endereco2,
+            "endereco 3" to endereco3,
+            "curriculo" to curriculo
+
         )
 
         return functions
-            .getHttpsCallable("setUserProfile")
+            .getHttpsCallable("setUserProfile2")
             .call(data)
             .continueWith { task ->
 
