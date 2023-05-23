@@ -91,7 +91,7 @@ class SignUpFragment : Fragment() {
         endereco2: String,
         endereco3: String,
         curriculo: String,
-        fcmToken: String,
+        fcmToken: String
     ) {
         auth = Firebase.auth
         // auth.useEmulator("127.0.0.1", 5001)
@@ -105,7 +105,7 @@ class SignUpFragment : Fragment() {
                     val user = auth.currentUser
                     (activity as MainActivity).storeUserId(user!!.uid)
                     // atualizar o perfil do usuário com os dados chamando a function.
-                    updateUserProfile(nome, telefone, email, user!!.uid, fcmToken, endereco1, endereco2, endereco3, curriculo)
+                    updateUserProfile(nome, telefone, email, user.uid, fcmToken, endereco1, endereco2, endereco3, curriculo)
                         .addOnCompleteListener(requireActivity()) { res ->
                             // conta criada com sucesso.
                             if(res.result.status == "SUCCESS"){
