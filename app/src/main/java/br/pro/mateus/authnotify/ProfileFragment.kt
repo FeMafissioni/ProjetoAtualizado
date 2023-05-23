@@ -9,6 +9,7 @@ import br.pro.mateus.authnotify.databinding.FragmentProfileBinding
 import br.pro.mateus.authnotify.databinding.FragmentSignupBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -16,10 +17,11 @@ import com.google.firebase.ktx.Firebase
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
-    private val db = Firebase.firestore
-
-        //initializing firebase authentication
+    private lateinit var db: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
+
+
+
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -33,29 +35,28 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val uid = FirebaseAuth.getInstance().currentUser!!.uid
-        val ref = db.collection("users").document(uid)
-        ref.get().addOnSuccessListener {
-            if(it!= null){
-                val name = it.data?.get("name").toString()
-                val email = it.data?.get("email").toString()
-                //val endereco1 = it.data?.get("endereco1").toString()
-                //val endereco2 = it.data?.get("endereco2").toString()
-                //val endereco3 = it.data?.get("endereco3").toString()
-                //val curriculo = it.data?.get("email").toString()
+        auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
 
-                binding.tvUserName.text = name
-                binding.tvEmail.text = email
-
-            }
+        val uid = auth.currentUser?.uid
+        if(uid != null){
+            ShowUserProfile(uid)
         }
 
     }
 
+    private fun ShowUserProfile(uid: String){
+        val userRef = db.collection("users").document(uid)
+        userRef.get().addOnSuccessListener { documentSnapshot ->
+            if (documentSnapshot.exists()){
+                val name = documentSnapshot.getString("nome")
+                val email = documentSnapshot.getString("email")
 
-
-
-
+                binding.tvUserName.text = name
+                binding.tvEmail.text = email
+            }
+        }
+    }
 
 }
 
