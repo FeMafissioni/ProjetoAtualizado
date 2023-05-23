@@ -82,7 +82,7 @@ class LoginFragment : Fragment() {
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     // login completado com sucesso.
-                    findNavController().navigate(R.id.action_login_to_info)
+                    findNavController().navigate(R.id.action_login_to_profile)
                 } else {
                     if (it.exception is FirebaseAuthException) {
                         Snackbar.make(requireView(),"Não foi possível fazer o login, verifique os dados e tente novamente.", Snackbar.LENGTH_LONG).show()

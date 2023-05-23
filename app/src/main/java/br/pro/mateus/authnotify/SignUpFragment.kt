@@ -112,6 +112,10 @@ class SignUpFragment : Fragment() {
                                 hideKeyboard()
                                 Snackbar.make(requireView(),"Conta cadastrada! Realize o login!",Snackbar.LENGTH_LONG).show()
                                 findNavController().navigate(R.id.action_signup_to_login)
+                            } else {
+                                Log.e(TAG, "segundaVerificacao:failure", task.exception)
+                                Toast.makeText(requireActivity(), "SegundaValidacao failed",
+                                    Toast.LENGTH_SHORT).show()
                             }
                         }
                 } else {
@@ -119,13 +123,22 @@ class SignUpFragment : Fragment() {
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
                     Toast.makeText(requireActivity(), "Authentication failed.",
                         Toast.LENGTH_SHORT).show()
-
                     // dar seguimento ao tratamento de erro.
                 }
             }
     }
 
-    private fun updateUserProfile(nome: String, telefone: String, email: String, uid: String, fcmToken: String, endereco1: String, endereco2: String, endereco3: String, curriculo: String) : Task<CustomResponse>{
+    private fun updateUserProfile(
+        nome: String,
+        telefone: String,
+        email: String,
+        uid: String,
+        fcmToken: String,
+        endereco1: String,
+        endereco2: String,
+        endereco3: String,
+        curriculo: String) : Task<CustomResponse>{
+
         // chamar a function para atualizar o perfil.
         functions = Firebase.functions("southamerica-east1")
 
@@ -136,11 +149,10 @@ class SignUpFragment : Fragment() {
             "email" to email,
             "uid" to uid,
             "fcmToken" to fcmToken,
-            "endereco 1" to endereco1,
-            "endereco 2" to endereco2,
-            "endereco 3" to endereco3,
+            "endereco1" to endereco1,
+            "endereco2" to endereco2,
+            "endereco3" to endereco3,
             "curriculo" to curriculo
-
         )
 
         return functions
@@ -151,7 +163,6 @@ class SignUpFragment : Fragment() {
                 val result = gson.fromJson((task.result?.data as String), CustomResponse::class.java)
                 result
             }
-
     }
 
     override fun onDestroyView() {

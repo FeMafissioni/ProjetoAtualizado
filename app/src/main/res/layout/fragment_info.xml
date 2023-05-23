@@ -22,7 +22,7 @@
         android:id="@+id/tiMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2000dp"
+        android:layout_marginTop="2dp"
         android:layout_below="@id/tvMeusDados"
         android:hint="Escreva"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
