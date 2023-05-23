@@ -16,8 +16,8 @@
             app:destination="@id/SignUpFragment" />
 
         <action
-            android:id="@+id/action_login_to_info"
-            app:destination="@id/InfoFragment" />
+            android:id="@+id/action_login_to_profile"
+            app:destination="@id/ProfileFragment" />
 
         <action
             android:id="@+id/action_login_to_notifications_disabled"
@@ -62,6 +62,16 @@
         <action
             android:id="@+id/action_info_to_login"
             app:destination="@id/LoginFragment" />
+
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/ProfileFragment"
+        android:name="br.pro.mateus.authnotify.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
 
     </fragment>
 </navigation>
