@@ -52,13 +52,17 @@ class ProfileFragment : Fragment() {
 
                         val name = data.get("nome").toString()
                         val email = data.get("email").toString()
-                        //val endereco1 = it.data?.get("endereco1").toString()
-                        //val endereco2 = it.data?.get("endereco2").toString()
-                        //val endereco3 = it.data?.get("endereco3").toString()
-                        //val curriculo = it.data?.get("email").toString()
+                        val endereco1 = data.get("endereco1").toString()
+                        val endereco2 = data.get("endereco2").toString()
+                        val endereco3 = data.get("endereco3").toString()
+                        val curriculo = data.get("curriculo").toString()
 
-                        binding.tvUserName.text = name
+                        binding.tvName.text = name
                         binding.tvEmail.text = email
+                        binding.tvEnd1.text = endereco1
+                        binding.tvEnd2.text = endereco2
+                        binding.tvEnd3.text = endereco3
+                        binding.tvCurriculo.text = curriculo
                     }
                 }
         }
