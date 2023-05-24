@@ -7,18 +7,24 @@ import android.view.View
 import android.view.ViewGroup
 import br.pro.mateus.authnotify.databinding.FragmentProfileBinding
 import br.pro.mateus.authnotify.databinding.FragmentSignupBinding
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.functions.FirebaseFunctions
+import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
+import com.google.gson.GsonBuilder
 
 
 class ProfileFragment : Fragment() {
 
+    private lateinit var functions: FirebaseFunctions
     private var _binding: FragmentProfileBinding? = null
     private lateinit var db: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
+    private val gson = GsonBuilder().enableComplexMapKeySerialization().create()
 
 
 
@@ -41,9 +47,13 @@ class ProfileFragment : Fragment() {
         val uid = auth.currentUser?.uid
         if(uid != null){
             ShowUserProfile(uid)
+            binding.btnsimular.setOnClickListener {
+                sendEmergecyNotification((activity as MainActivity).getFcmToken())
+            }
         }
 
     }
+
 
     private fun ShowUserProfile(uid: String){
         val userRef = db.collection("users").document(uid)
@@ -57,6 +67,32 @@ class ProfileFragment : Fragment() {
             }
         }
     }
+
+    fun sendEmergecyNotification(fcmToken: String): Task<CustomResponse> {
+        val data = hashMapOf(
+            "fcmToken" to fcmToken
+        )
+
+
+        functions = Firebase.functions("southamerica-east1")
+        return functions.getHttpsCallable("sendFcmMessage")
+            .call(data)
+            .continueWith { task ->
+                val result =
+                    gson.fromJson((task.result?.data as String), CustomResponse::class.java)
+                result
+            }
+
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+    }
+
 
 }
 

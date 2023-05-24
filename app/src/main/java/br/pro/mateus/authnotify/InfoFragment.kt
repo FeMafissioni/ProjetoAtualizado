@@ -76,6 +76,7 @@ class InfoFragment : Fragment() {
             }
     }
 
+
     override fun onStart() {
         super.onStart()
     }
