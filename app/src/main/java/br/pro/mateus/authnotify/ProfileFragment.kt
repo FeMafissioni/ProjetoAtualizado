@@ -1,33 +1,31 @@
 package br.pro.mateus.authnotify
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import br.pro.mateus.authnotify.databinding.FragmentProfileBinding
-import br.pro.mateus.authnotify.databinding.FragmentSignupBinding
-import com.google.android.gms.tasks.Task
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.functions.FirebaseFunctions
-import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
-import com.google.gson.GsonBuilder
 
 
 class ProfileFragment : Fragment() {
 
-    private lateinit var functions: FirebaseFunctions
     private var _binding: FragmentProfileBinding? = null
-    private lateinit var db: FirebaseFirestore
+    private val db = Firebase.firestore
+
+    companion object {
+        val TAG = "profile_fragment"
+    }
+
+    //initializing firebase authentication
     private lateinit var auth: FirebaseAuth
-    private val gson = GsonBuilder().enableComplexMapKeySerialization().create()
-
-
-
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -41,60 +39,29 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        auth = FirebaseAuth.getInstance()
-        db = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
 
-        val uid = auth.currentUser?.uid
-        if(uid != null){
-            ShowUserProfile(uid)
-            binding.btnsimular.setOnClickListener {
-                sendEmergecyNotification((activity as MainActivity).getFcmToken())
-            }
+        if (uid != null) {
+            val database = FirebaseFirestore.getInstance()
+            val collection = database.collection("users")
+
+            collection.whereEqualTo("uid", uid).get()
+                .addOnSuccessListener {
+                    for (values in it) {
+                        val data = values.data
+
+                        val name = data.get("nome").toString()
+                        val email = data.get("email").toString()
+                        //val endereco1 = it.data?.get("endereco1").toString()
+                        //val endereco2 = it.data?.get("endereco2").toString()
+                        //val endereco3 = it.data?.get("endereco3").toString()
+                        //val curriculo = it.data?.get("email").toString()
+
+                        binding.tvUserName.text = name
+                        binding.tvEmail.text = email
+                    }
+                }
         }
 
     }
-
-
-    private fun ShowUserProfile(uid: String){
-        val userRef = db.collection("users").document(uid)
-        userRef.get().addOnSuccessListener { documentSnapshot ->
-            if (documentSnapshot.exists()){
-                val name = documentSnapshot.getString("nome")
-                val email = documentSnapshot.getString("email")
-
-                binding.tvUserName.text = name
-                binding.tvEmail.text = email
-            }
-        }
-    }
-
-    fun sendEmergecyNotification(fcmToken: String): Task<CustomResponse> {
-        val data = hashMapOf(
-            "fcmToken" to fcmToken
-        )
-
-
-        functions = Firebase.functions("southamerica-east1")
-        return functions.getHttpsCallable("sendFcmMessage")
-            .call(data)
-            .continueWith { task ->
-                val result =
-                    gson.fromJson((task.result?.data as String), CustomResponse::class.java)
-                result
-            }
-
-
-    }
-
-    override fun onStart() {
-        super.onStart()
-    }
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
-
-
 }
-
-
-
