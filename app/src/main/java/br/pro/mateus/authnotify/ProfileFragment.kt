@@ -1,14 +1,16 @@
 package br.pro.mateus.authnotify
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import br.pro.mateus.authnotify.databinding.FragmentProfileBinding
-import br.pro.mateus.authnotify.databinding.FragmentSignupBinding
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -18,7 +20,11 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val db = Firebase.firestore
 
-        //initializing firebase authentication
+    companion object {
+        val TAG = "profile_fragment"
+    }
+
+    //initializing firebase authentication
     private lateinit var auth: FirebaseAuth
     private val binding get() = _binding!!
 
@@ -33,31 +39,29 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val uid = FirebaseAuth.getInstance().currentUser!!.uid
-        val ref = db.collection("users").document(uid)
-        ref.get().addOnSuccessListener {
-            if(it!= null){
-                val name = it.data?.get("name").toString()
-                val email = it.data?.get("email").toString()
-                //val endereco1 = it.data?.get("endereco1").toString()
-                //val endereco2 = it.data?.get("endereco2").toString()
-                //val endereco3 = it.data?.get("endereco3").toString()
-                //val curriculo = it.data?.get("email").toString()
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
 
-                binding.tvUserName.text = name
-                binding.tvEmail.text = email
+        if (uid != null) {
+            val database = FirebaseFirestore.getInstance()
+            val collection = database.collection("users")
 
-            }
+            collection.whereEqualTo("uid", uid).get()
+                .addOnSuccessListener {
+                    for (values in it) {
+                        val data = values.data
+
+                        val name = data.get("nome").toString()
+                        val email = data.get("email").toString()
+                        //val endereco1 = it.data?.get("endereco1").toString()
+                        //val endereco2 = it.data?.get("endereco2").toString()
+                        //val endereco3 = it.data?.get("endereco3").toString()
+                        //val curriculo = it.data?.get("email").toString()
+
+                        binding.tvUserName.text = name
+                        binding.tvEmail.text = email
+                    }
+                }
         }
 
     }
-
-
-
-
-
-
 }
-
-
-

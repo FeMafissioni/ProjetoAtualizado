@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.navigation.fragment.findNavController
 import br.pro.mateus.authnotify.databinding.FragmentLoginBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.recaptcha.RecaptchaException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.ktx.auth

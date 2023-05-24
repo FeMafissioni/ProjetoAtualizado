@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import br.pro.mateus.authnotify.databinding.FragmentSignupBinding
 import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.recaptcha.RecaptchaException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.functions.FirebaseFunctions
@@ -121,7 +122,7 @@ class SignUpFragment : Fragment() {
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(requireActivity(), "Authentication failed.",
+                    Toast.makeText(requireActivity(), "Erro de autenticação!.",
                         Toast.LENGTH_SHORT).show()
                     // dar seguimento ao tratamento de erro.
                 }
