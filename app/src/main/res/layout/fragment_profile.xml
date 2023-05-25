@@ -27,7 +27,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="eric Rodrigues Abib"
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@id/ivProfilePic"
             android:fontFamily="sans-serif-medium"
@@ -39,7 +38,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvName"
             android:layout_centerVertical="true"
-            android:text="eric@gmail"
             android:layout_marginStart="10dp"
             android:textSize="17dp"
             android:fontFamily="sans-serif-medium"
@@ -68,6 +66,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
+
             android:textSize="20dp" />
 
         <TextView
@@ -77,6 +76,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
+
             android:textSize="20dp" />
 
         <TextView
@@ -86,6 +86,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
+
             android:textSize="20dp" />
     </LinearLayout>
 
