@@ -69,5 +69,13 @@ class ProfileFragment : Fragment() {
                 }
         }
 
+//        binding.switchButton.setOnCheckedChangeListener{ _, isChecked ->
+//            val message = if (isChecked) "Switch ON" else "Switch OFF"
+//            Toast.makeText(
+//                this@ProfileFragment, message,
+//                Toast.LENGTH_SHORT
+//            ).show()
+
     }
 }
+

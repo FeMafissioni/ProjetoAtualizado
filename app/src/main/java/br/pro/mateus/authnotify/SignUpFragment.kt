@@ -153,11 +153,12 @@ class SignUpFragment : Fragment() {
             "endereco1" to endereco1,
             "endereco2" to endereco2,
             "endereco3" to endereco3,
-            "curriculo" to curriculo
+            "curriculo" to curriculo,
+            "status" to false
         )
 
         return functions
-            .getHttpsCallable("setUserProfile2")
+            .getHttpsCallable("setUserProfile3")
             .call(data)
             .continueWith { task ->
 
