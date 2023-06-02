@@ -74,7 +74,7 @@ class ProfileFragment : Fragment() {
         binding.swStatusSwitch.setOnCheckedChangeListener { _, isChecked ->
             val message = if (isChecked) "Disponível para Emergências" else "Indisponível para Emergências"
 
-//            changeStatus()
+            changeUserState(isChecked)
 
             Toast.makeText(
                 requireActivity(),
@@ -84,33 +84,26 @@ class ProfileFragment : Fragment() {
         }
     }
 
-//    private fun changeStatus() {
-//        val uid = FirebaseAuth.getInstance().currentUser?.uid
-//
-//        Log.d("uuid -> ", uid.toString())
-//        if (uid != null) {
-//            val database = FirebaseFirestore.getInstance()
-//            val collection = database.collection("userState")
-//
-//            var status = false
-//            Log.d("status -> ", status.toString())
-//
-//            var id: String = ""
-//            collection.whereEqualTo("uid", uid).get().addOnSuccessListener {
-//                for (values in it) {
-//
-//                    val data = values.data
-//                    status = data.get("status") as Boolean
-//                }
-//            }
-//
-//            collection.document("13pRD4IrXDXWwg6Z43OM").update("status", !status).addOnCompleteListener {
-//                Log.d("exception -> ", it.exception.toString())
-//            }
-//
-//
-//        }
-//    }
+    private fun changeUserState(switch: Boolean) {
+        val database = FirebaseFirestore.getInstance()
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
+        val collection = database.collection("users")
+
+        collection.whereEqualTo("uid", uid).get()
+            .addOnSuccessListener {
+                for (document in it){
+                    collection.document(document.id)
+                        .update("status", switch)
+                        .addOnSuccessListener {
+                            println("Disponivel")
+                        }.addOnSuccessListener {
+                            println("indisponivel")
+                        }
+                }
+        }
+    }
+
+
 }
 
 
