@@ -158,7 +158,7 @@ class SignUpFragment : Fragment() {
         )
 
         return functions
-            .getHttpsCallable("setUserProfile3")
+            .getHttpsCallable("setUserProfile2")
             .call(data)
             .continueWith { task ->
 
@@ -166,7 +166,6 @@ class SignUpFragment : Fragment() {
                 result
             }
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

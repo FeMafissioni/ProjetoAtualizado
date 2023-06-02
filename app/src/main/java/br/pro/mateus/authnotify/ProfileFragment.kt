@@ -10,6 +10,7 @@ import android.widget.Toast
 import br.pro.mateus.authnotify.databinding.FragmentProfileBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -65,17 +66,52 @@ class ProfileFragment : Fragment() {
                         binding.tvEnd2.text = endereco2
                         binding.tvEnd3.text = endereco3
                         binding.tvCurriculo.text = curriculo
+
                     }
                 }
         }
 
-//        binding.switchButton.setOnCheckedChangeListener{ _, isChecked ->
-//            val message = if (isChecked) "Switch ON" else "Switch OFF"
-//            Toast.makeText(
-//                this@ProfileFragment, message,
-//                Toast.LENGTH_SHORT
-//            ).show()
+        binding.swStatusSwitch.setOnCheckedChangeListener { _, isChecked ->
+            val message = if (isChecked) "Disponível para Emergências" else "Indisponível para Emergências"
 
+//            changeStatus()
+
+            Toast.makeText(
+                requireActivity(),
+                message,
+                Toast.LENGTH_LONG
+            ).show()
+        }
     }
+
+//    private fun changeStatus() {
+//        val uid = FirebaseAuth.getInstance().currentUser?.uid
+//
+//        Log.d("uuid -> ", uid.toString())
+//        if (uid != null) {
+//            val database = FirebaseFirestore.getInstance()
+//            val collection = database.collection("userState")
+//
+//            var status = false
+//            Log.d("status -> ", status.toString())
+//
+//            var id: String = ""
+//            collection.whereEqualTo("uid", uid).get().addOnSuccessListener {
+//                for (values in it) {
+//
+//                    val data = values.data
+//                    status = data.get("status") as Boolean
+//                }
+//            }
+//
+//            collection.document("13pRD4IrXDXWwg6Z43OM").update("status", !status).addOnCompleteListener {
+//                Log.d("exception -> ", it.exception.toString())
+//            }
+//
+//
+//        }
+//    }
 }
+
+
 
