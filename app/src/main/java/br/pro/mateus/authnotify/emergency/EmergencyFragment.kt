@@ -5,56 +5,81 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import br.pro.mateus.authnotify.CustomResponse
 import br.pro.mateus.authnotify.R
+import br.pro.mateus.authnotify.databinding.FragmentEmergencyBinding
+import com.google.android.gms.tasks.Task
+import com.google.common.base.Functions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.functions.FirebaseFunctions
+import com.google.firebase.functions.ktx.functions
+import com.google.firebase.ktx.Firebase
+import com.google.gson.GsonBuilder
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [EmergencyFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class EmergencyFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    //aqui foi inicializado o authentication, as functions, o binding e tambem o gson
+    //Aqui n é necessario checar o current user uid
+    private lateinit var Auth: FirebaseAuth
+    private lateinit var Functions: FirebaseFunctions
+    private var _binding: FragmentEmergencyBinding? = null
+    private val binding get() = _binding!!
+    private val gson = GsonBuilder().enableComplexMapKeySerialization().create()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentEmergencyBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //mostrar os dados nas telas
+
+        binding.btnAccept.setOnClickListener {
+            setRespostaDentista(true).addOnCompleteListener(requireActivity()){ res->
+                if(res.result.status == "sucesso"){
+                    findNavController().navigate(R.id.action_EmergencyFragment_to_TimerFragment)
+                }
+            }
+        }
+        binding.btnRefuse.setOnClickListener {
+            setRespostaDentista(false).addOnCompleteListener(requireActivity()){ res->
+                if (res.result.status == "sucesso"){
+                    findNavController().navigate(R.id.action_EmergencyFragment_to_ProfileFragment)
+                }
+            }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_emergency, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment EmergencyFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            EmergencyFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun setRespostaDentista(status: Boolean): Task<CustomResponse> {
+        Functions = Firebase.functions("southamerica-east1")
+        Auth = Firebase.auth
+        var status = true
+        if (!status){
+            status = false
+        }
+        val Resposta = hashMapOf(
+            "DenstistaUid" to Auth.currentUser!!.uid,
+            "emergencia" to (activity as EmergenciaActivity).intent.getStringExtra("id"),
+            "status" to status
+        )
+        return Functions
+            .getHttpsCallable("setRespostaDentista")
+            .call(Resposta)
+            .continueWith { task ->
+                val result =
+                    gson.fromJson((task.result?.data as String), CustomResponse::class.java)
+                result
             }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }
