@@ -44,6 +44,8 @@ class EmergencyFragment : Fragment() {
         binding.tvName.text = intent.getStringExtra("nome")
         Log.d("EmergencyFragment" , "fragment intent -> ${intent.getStringExtra("nome")}")
 
+        binding.tvPhone.text = intent.getStringExtra("telefone")
+
         Glide.with(this)
             .load(intent.getStringExtra("foto"))
             .into(binding.IVPhoto)
@@ -69,8 +71,8 @@ class EmergencyFragment : Fragment() {
         Auth = Firebase.auth
 
         val Resposta = hashMapOf(
-            "DenstistaUid" to Auth.currentUser!!.uid,
-            "emergencia" to (activity as EmergenciaActivity).intent.getStringExtra("id"),
+            "Denstistauid" to Auth.currentUser!!.uid,
+            "emergenciaID" to (activity as EmergenciaActivity).intent.getStringExtra("id"),
             "status" to status
         )
         return Functions
