@@ -9,31 +9,48 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="30dp">
+        android:padding="30dp"
+        android:background="@drawable/gradient_background">
 
         <TextView
             android:id="@+id/tvHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Crie a sua conta"
-            android:textSize="42sp"
+            android:textSize="30sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
+            />
+
+        <TextView
+            android:id="@+id/tvSubHeader"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Insira suas informações para criar sua conta"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
             />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tiNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="45dp"
             android:layout_below="@id/tvHeader"
             android:hint="Nome"
+            app:boxStrokeWidth="0dp"
+            android:textColorHint="@color/teal_700"
+            app:hintTextColor="@color/teal_700"
+            android:background="@drawable/border"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etNome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/teal_700"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -45,12 +62,17 @@
             android:layout_marginTop="20dp"
             android:layout_below="@id/tiNome"
             android:hint="Telefone"
+            app:boxStrokeWidth="0dp"
+            android:textColorHint="@color/teal_700"
+            app:hintTextColor="@color/teal_700"
+            android:background="@drawable/border"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etTelefone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/teal_700"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -62,12 +84,17 @@
             android:layout_marginTop="20dp"
             android:layout_below="@id/tiTelefone"
             android:hint="Email"
+            app:boxStrokeWidth="0dp"
+            android:textColorHint="@color/teal_700"
+            app:hintTextColor="@color/teal_700"
+            android:background="@drawable/border"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/teal_700"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -79,7 +106,11 @@
             android:layout_marginTop="20dp"
             android:layout_below="@id/tiEmail"
             android:hint="Senha"
+            app:boxStrokeWidth="0dp"
+            android:textColorHint="@color/teal_700"
+            app:hintTextColor="@color/teal_700"
             app:endIconMode="password_toggle"
+            android:background="@drawable/border"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -87,6 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
+                android:textColor="@color/teal_700"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -98,13 +130,17 @@
             android:layout_marginTop="20dp"
             android:layout_below="@id/tiPassword"
             android:hint="Endereço 1"
+            app:boxStrokeWidth="0dp"
+            android:textColorHint="@color/teal_700"
+            app:hintTextColor="@color/teal_700"
+            android:background="@drawable/border"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEnd1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:textColor="@color/teal_700"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,13 +151,17 @@
             android:layout_marginTop="20dp"
             android:layout_below="@id/tiEnd1"
             android:hint="Endereço 2"
+            app:boxStrokeWidth="0dp"
+            android:textColorHint="@color/teal_700"
+            app:hintTextColor="@color/teal_700"
+            android:background="@drawable/border"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEnd2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:textColor="@color/teal_700"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -132,13 +172,17 @@
             android:layout_marginTop="20dp"
             android:layout_below="@id/tiEnd2"
             android:hint="Endereço 3"
+            app:boxStrokeWidth="0dp"
+            android:textColorHint="@color/teal_700"
+            app:hintTextColor="@color/teal_700"
+            android:background="@drawable/border"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEnd3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:textColor="@color/teal_700"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -149,12 +193,17 @@
             android:layout_marginTop="20dp"
             android:layout_below="@id/tiEnd3"
             android:hint="Insira o Curriculo (Max: 500)"
+            app:boxStrokeWidth="0dp"
+            android:textColorHint="@color/teal_700"
+            app:hintTextColor="@color/teal_700"
+            android:background="@drawable/border"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etCurriculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/teal_700"
                 android:maxLength="500" />
 
             </com.google.android.material.textfield.TextInputLayout>

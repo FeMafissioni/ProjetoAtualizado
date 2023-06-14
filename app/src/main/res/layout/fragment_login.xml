@@ -5,25 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="30dp"
-    tools:context=".LoginFragment">
+    tools:context=".LoginFragment"
+    android:background="@drawable/gradient_background">
 
     <ImageView
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="30dp"
         android:layout_width="233dp"
         android:layout_height="169dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/imagem_do_whatsapp_de_2023_05_03___s__19_17_49" />
+        android:src="@drawable/imagem_do_whatsapp_de_2023_05_03___s__19_17_49_removebg_preview" />
 
     <TextView
         android:id="@+id/tvHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Bem Vindo"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="165dp"
         android:textSize="50sp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/black"
+        android:textColor="@color/light_grey"
         />
 
     <TextView
@@ -31,11 +32,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Entre com a sua conta"
+        android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"
         android:layout_below="@+id/tvHeader"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/black"
+        android:textColor="@color/light_grey"
         />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -45,13 +47,19 @@
         android:layout_marginTop="20dp"
         android:layout_below="@id/tvEntre"
         android:hint="Email"
+        app:boxStrokeWidth="0dp"
+        android:textColorHint="@color/teal_700"
+        app:hintTextColor="@color/teal_700"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/border"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/teal_700"
+            android:background="@drawable/border"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -64,7 +72,11 @@
         android:layout_below="@id/tiEmail"
         android:hint="Senha"
         app:endIconMode="password_toggle"
+        app:boxStrokeWidth="0dp"
+        android:textColorHint="@color/teal_700"
+        app:hintTextColor="@color/teal_700"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/border"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -72,6 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:textColor="@color/teal_700"
             />
 
     </com.google.android.material.textfield.TextInputLayout>

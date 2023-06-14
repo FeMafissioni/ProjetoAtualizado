@@ -44,8 +44,6 @@ class EmergencyFragment : Fragment() {
         binding.tvName.text = intent.getStringExtra("nome")
         Log.d("EmergencyFragment" , "fragment intent -> ${intent.getStringExtra("nome")}")
 
-        binding.tvPhone.text = intent.getStringExtra("telefone")
-
         Glide.with(this)
             .load(intent.getStringExtra("foto"))
             .into(binding.IVPhoto)
