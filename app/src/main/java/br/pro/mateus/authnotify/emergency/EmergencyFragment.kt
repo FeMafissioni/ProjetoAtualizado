@@ -12,6 +12,7 @@ import br.pro.mateus.authnotify.R
 import br.pro.mateus.authnotify.databinding.FragmentEmergencyBinding
 import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.Task
+import com.google.android.material.snackbar.Snackbar
 import com.google.common.base.Functions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -40,25 +41,31 @@ class EmergencyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //mostrar os dados nas telas
-        val intent = (activity as EmergenciaActivity).intent
-        binding.tvName.text = intent.getStringExtra("nome")
-        Log.d("EmergencyFragment" , "fragment intent -> ${intent.getStringExtra("nome")}")
+        if((activity as EmergenciaActivity).intent.hasExtra("nome")){
+            val intent = (activity as EmergenciaActivity).intent
+            binding.tvName.text = intent.getStringExtra("nome")
 
-        Glide.with(this)
-            .load(intent.getStringExtra("foto"))
-            .into(binding.IVPhoto)
+            Glide.with(this)
+                .load(intent.getStringExtra("foto"))
+                .into(binding.IVPhoto)
+        }
 
         binding.btnAccept.setOnClickListener {
             setRespostaDentista(true).addOnCompleteListener(requireActivity()){ res->
                 if(res.result.status == "SUCCESS"){
                     findNavController().navigate(R.id.action_EmergencyFragment_to_TimerFragment)
+                }else{
+                    Snackbar.make(requireView(),"Nao foi possivel aceitar", Snackbar.LENGTH_LONG).show()
                 }
             }
         }
+
         binding.btnRefuse.setOnClickListener {
             setRespostaDentista(false).addOnCompleteListener(requireActivity()){ res->
                 if (res.result.status == "SUCCESS"){
                     findNavController().navigate(R.id.action_EmergencyFragment_to_ProfileFragment)
+                }else{
+                    Snackbar.make(requireView(),"Nao foi possivel recusar", Snackbar.LENGTH_LONG).show()
                 }
             }
         }
