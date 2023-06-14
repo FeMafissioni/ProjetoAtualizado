@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graphnotificacao">
+
+    <fragment
+        android:id="@+id/EmergencyFragment"
+        android:name="br.pro.mateus.authnotify.emergency.EmergencyFragment"
+        android:label="Emergency"
+        tools:layout="@layout/fragment_emergency">
+
+        <action
+            android:id="@+id/action_EmergencyFragment_to_TimerFragment"
+            app:destination="@+id/TimerFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/TimerFragment"
+        android:name="br.pro.mateus.authnotify.emergency.TimerFragment"
+        android:label="Timer"
+        tools:layout="@layout/fragment_timer">
+
+        <action
+            android:id="@+id/action_TimerFragment_to_FinalFragment"
+            app:destination="@+id/FinalFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/FinalFragment"
+        android:name="br.pro.mateus.authnotify.emergency.FinalScreenFragment"
+        android:label="FinalScreen"
+        tools:layout="@layout/fragment_final_screen">
+
+    </fragment>
+
+</navigation>

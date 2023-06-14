@@ -1,5 +1,6 @@
 package br.pro.mateus.authnotify.emergency
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import br.pro.mateus.authnotify.CustomResponse
+import br.pro.mateus.authnotify.MainActivity
+import br.pro.mateus.authnotify.ProfileFragment
 import br.pro.mateus.authnotify.R
 import br.pro.mateus.authnotify.databinding.FragmentEmergencyBinding
 import com.bumptech.glide.Glide
@@ -44,7 +47,6 @@ class EmergencyFragment : Fragment() {
         if((activity as EmergenciaActivity).intent.hasExtra("nome")){
             val intent = (activity as EmergenciaActivity).intent
             binding.tvName.text = intent.getStringExtra("nome")
-
             Glide.with(this)
                 .load(intent.getStringExtra("foto"))
                 .into(binding.IVPhoto)
@@ -63,7 +65,8 @@ class EmergencyFragment : Fragment() {
         binding.btnRefuse.setOnClickListener {
             setRespostaDentista(false).addOnCompleteListener(requireActivity()){ res->
                 if (res.result.status == "SUCCESS"){
-                    findNavController().navigate(R.id.action_EmergencyFragment_to_ProfileFragment)
+                    val intent = Intent(binding.root.context, ProfileFragment::class.java)
+                    startActivity(intent)
                 }else{
                     Snackbar.make(requireView(),"Nao foi possivel recusar", Snackbar.LENGTH_LONG).show()
                 }

@@ -74,42 +74,4 @@
         tools:layout="@layout/fragment_profile">
 
     </fragment>
-
-    <fragment
-        android:id="@+id/EmergencyFragment"
-        android:name="br.pro.mateus.authnotify.emergency.EmergencyFragment"
-        android:label="Emergency"
-        tools:layout="@layout/fragment_emergency">
-
-        <action
-            android:id="@+id/action_EmergencyFragment_to_TimerFragment"
-            app:destination="@+id/TimerFragment"/>
-
-        <action
-            android:id="@+id/action_EmergencyFragment_to_ProfileFragment"
-            app:destination="@+id/ProfileFragment"/>
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/TimerFragment"
-        android:name="br.pro.mateus.authnotify.emergency.TimerFragment"
-        android:label="Timer"
-        tools:layout="@layout/fragment_timer">
-
-        <action
-            android:id="@+id/action_TimerFragment_to_FinalFragment"
-            app:destination="@+id/FinalFragment"/>
-    </fragment>
-
-    <fragment
-        android:id="@+id/FinalFragment"
-        android:name="br.pro.mateus.authnotify.emergency.FinalScreenFragment"
-        android:label="FinalScreen"
-        tools:layout="@layout/fragment_final_screen">
-
-        <action
-            android:id="@+id/action_FinalFragment_to_ProfileFragment"
-            app:destination="@+id/ProfileFragment"/>
-    </fragment>
 </navigation>
