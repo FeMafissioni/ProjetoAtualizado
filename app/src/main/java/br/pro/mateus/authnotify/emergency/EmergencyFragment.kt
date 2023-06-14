@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import br.pro.mateus.authnotify.CustomResponse
+import br.pro.mateus.authnotify.R
 import br.pro.mateus.authnotify.databinding.EmergencyFragmentBinding
 import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.Task
@@ -59,9 +61,16 @@ class EmergencyFragment : Fragment() {
                     Log.d("EmergencyFragment", result.message!!)
                 }
             }
+            findNavController().navigate(R.id.action_EmergencyFragment_to_TimerFragment)
         }
 
         binding.btnRefuse.setOnClickListener {
+            mandarResposta(false).addOnSuccessListener { result ->
+                if(result.status == "SUCCESS"){
+                    Log.d("emergencyFragment", result.message!!)
+                }
+            }
+            //dar intent para uma tela
         }
     }
 
@@ -76,7 +85,7 @@ class EmergencyFragment : Fragment() {
             "uid" to uid,
             "Dentistauid" to uid,
             "emergenciaID" to arguments?.getString("id"),
-            "status" to "true",
+            "status" to status,
         )
         return functions
             .getHttpsCallable("setRespostaDentistas")
