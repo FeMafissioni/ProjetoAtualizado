@@ -11,8 +11,7 @@ import androidx.core.app.NotificationCompat
 import br.pro.mateus.authnotify.MainActivity
 import br.pro.mateus.authnotify.R
 import br.pro.mateus.authnotify.datastore.UserPreferencesRepository
-import br.pro.mateus.authnotify.emergency.EmergenciaActivity
-import br.pro.mateus.authnotify.emergency.EmergencyFragment
+import br.pro.mateus.authnotify.emergency.EmergencyActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
@@ -63,19 +62,17 @@ class DefaultMessageService : FirebaseMessagingService() {
      * ou enviar um parametro na Intent para tratar qual fragment abrir.(desafio para vc fazer)
      */
     private fun showEmergencyNotification(messageBody: String, messageData: Map<String, String>) {
-        val intent = Intent(this, EmergenciaActivity::class.java)
+        val intent = Intent(this, EmergencyActivity::class.java)
         intent.action = "actionstring" + System.currentTimeMillis()
         intent.putExtra("nome", messageData["nome"])
         intent.putExtra("telefone", messageData["telefone"])
         intent.putExtra("foto", messageData["foto"])
 
-
-
 /* tem que adicionar na function pra poder puxar
 
         intent.putExtra("status", messageData["status"])
 */
-        intent.putExtra("emergenciaID", messageData["id"])
+        intent.putExtra("emergenciaID", messageData["emergenciaID"])
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,

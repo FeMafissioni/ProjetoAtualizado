@@ -14,8 +14,9 @@
         android:theme="@style/Theme.AuthNotify"
         tools:targetApi="31">
         <activity
-            android:name=".emergency.EmergenciaActivity"
-            android:exported="false" />
+            android:name=".emergency.EmergencyActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AuthNotify.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
