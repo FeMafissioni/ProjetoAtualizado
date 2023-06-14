@@ -16,10 +16,11 @@ class EmergencyActivity : AppCompatActivity() {
 
         val name = intent.getStringExtra("nome")
         val phone = intent.getStringExtra("telefone")
+        val photo = intent.getStringExtra("foto")
 
         val id = intent.getStringExtra("emergenciaID");
 
-        val fragment = EmergencyFragment.newInstance(name, phone, id)
+        val fragment = EmergencyFragment.newInstance(name, phone, photo, id)
         replaceFragment(fragment)
     }
 

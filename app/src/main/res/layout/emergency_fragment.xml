@@ -68,8 +68,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clImage"
-        android:layout_width="373dp"
-        android:layout_height="321dp"
+        android:layout_width="380dp"
+        android:layout_height="340dp"
 
         android:layout_marginTop="23dp"
 
@@ -88,33 +88,37 @@
         android:id="@+id/clButton"
         android:layout_width="369dp"
         android:layout_height="214dp"
-
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/clButton"
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/btnRefuse"
-            android:layout_width="167dp"
+            android:layout_width="160dp"
             android:layout_height="67dp"
-            android:backgroundTint="@color/teal_700"
+            android:layout_marginTop="72dp"
 
+            android:layout_marginEnd="184dp"
+            android:backgroundTint="@color/teal_700"
             android:text="Recusar"
-            tools:layout_editor_absoluteX="6dp"
-            tools:layout_editor_absoluteY="110dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
 
         <Button
             android:id="@+id/btnAccept"
-            android:layout_width="167dp"
+            android:layout_width="160dp"
             android:layout_height="67dp"
-            android:backgroundTint="@color/teal_700"
+            android:layout_marginTop="72dp"
 
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/teal_700"
             android:text="Aceitar"
-            tools:layout_editor_absoluteX="202dp"
-            tools:layout_editor_absoluteY="110dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

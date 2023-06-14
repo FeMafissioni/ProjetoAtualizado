@@ -12,6 +12,7 @@ import br.pro.mateus.authnotify.R
 import br.pro.mateus.authnotify.databinding.EmergencyFragmentBinding
 import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.Task
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
@@ -24,11 +25,12 @@ class EmergencyFragment : Fragment() {
     private val gson = GsonBuilder().enableComplexMapKeySerialization().create()
 
     companion object {
-        fun newInstance(name: String?, phone: String?, id: String?): EmergencyFragment {
+        fun newInstance(name: String?, phone: String?, photo: String?, id: String?): EmergencyFragment {
             val fragment = EmergencyFragment()
             val args = Bundle()
             args.putString("name", name)
             args.putString("phone", phone)
+            args.putString("foto", photo)
             args.putString("id", id)
             fragment.arguments = args
             return fragment
@@ -56,21 +58,24 @@ class EmergencyFragment : Fragment() {
             .into(binding.IVPhoto)
 
         binding.btnAccept.setOnClickListener {
-            mandarResposta(true).addOnSuccessListener { result ->
-                if (result.status == "SUCCESS") {
-                    Log.d("EmergencyFragment", result.message!!)
+            mandarResposta(true).addOnCompleteListener(requireActivity()) { result ->
+                if (result.result.status == "SUCCESS") {
+                    findNavController().navigate(R.id.action_EmergencyFragment_to_TimerFragment)
+                }else{
+                    Snackbar.make(requireView(),"Deu ruim!",Snackbar.LENGTH_LONG).show()
                 }
             }
-            findNavController().navigate(R.id.action_EmergencyFragment_to_TimerFragment)
+
         }
 
         binding.btnRefuse.setOnClickListener {
-            mandarResposta(false).addOnSuccessListener { result ->
-                if(result.status == "SUCCESS"){
-                    Log.d("emergencyFragment", result.message!!)
+            mandarResposta(false).addOnCompleteListener { result ->
+                if(result.result.status == "SUCCESS"){
+                    findNavController().navigate(R.id.action_EmergencyFragment_to_ProfileFragment)
+                }else{
+                    Snackbar.make(requireView(),"Deu ruim!",Snackbar.LENGTH_LONG).show()
                 }
             }
-            //dar intent para uma tela
         }
     }
 

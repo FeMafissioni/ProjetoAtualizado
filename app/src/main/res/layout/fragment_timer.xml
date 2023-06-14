@@ -1,13 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".emergency.TimerFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".emergency.TimerFragment"
+    android:background="@drawable/gradient_background">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="aguarde o socorrista escolher um profissional"
-        android:gravity="center"/>
-</FrameLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clSecondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="220dp"
+        >
+
+        <TextView
+            android:id="@+id/tvTimerHeader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:text="Aguardando Paciente"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tvTimerSubHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Tempo Aguardando:"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+
+            app:layout_constraintTop_toBottomOf="@id/tvTimerHeader"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="40dp"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintTop_toBottomOf="@id/tvTimerSubHeader"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="15dp"
+
+            android:background="@drawable/border"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/tvTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="04m:20s"
+                android:textColor="@color/light_grey"
+                android:textSize="60sp"
+                android:textStyle="bold"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
