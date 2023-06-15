@@ -11,7 +11,7 @@
         android:id="@+id/tvMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Notificações estão desabilitadas"
+        android:text="@string/notifications_are_disabled_fragment_label"
         android:textSize="16sp"
         android:textStyle="bold"
         />
@@ -23,7 +23,7 @@
         android:layout_below="@id/tvMessage"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:text="Habilitar..."
+        android:text="@string/Doit"
         android:textAlignment="center" />
 
 </RelativeLayout>

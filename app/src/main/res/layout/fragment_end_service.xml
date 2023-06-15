@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="Atendimento em Andamento"
+            android:text="@string/Service_in_progress"
             android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="Informações do Responsável"
+            android:text="@string/adult_info"
             android:textColor="@color/white"
             android:textSize="25sp"
 
@@ -61,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="Pablo Escobar"
+
                 android:textColor="@color/light_grey"
                 android:textSize="25sp"
 
@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="(19) 999999999"
+
                 android:textColor="@color/light_grey"
                 android:textSize="25sp"
 
@@ -98,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="Quando a consulta for encerrada e\no pagamento for efetuado,\nclique no botão abaixo "
+                android:text="@string/final_instructions"
                 android:textColor="@color/light_grey"
                 android:background="@drawable/border"
                 android:gravity="center"
@@ -115,7 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="Encerrar Consulta"
+                android:text="@string/Finish_emergency"
                 android:backgroundTint="@color/teal_700"
                 android:textAlignment="center"
                 android:textSize="16sp"

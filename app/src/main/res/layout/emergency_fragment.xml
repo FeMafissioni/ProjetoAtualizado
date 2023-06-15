@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="Emergencia"
+            android:text="@string/Emergency_string"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -103,7 +103,7 @@
 
             android:layout_marginEnd="184dp"
             android:backgroundTint="@color/teal_700"
-            android:text="Recusar"
+            android:text="@string/Refuse_string"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
@@ -116,7 +116,7 @@
 
             android:layout_marginEnd="16dp"
             android:backgroundTint="@color/teal_700"
-            android:text="Aceitar"
+            android:text="@string/Accept_string"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />

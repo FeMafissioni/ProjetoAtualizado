@@ -92,7 +92,7 @@
 
     <fragment
         android:id="@+id/TimerFragment"
-        android:name="br.pro.mateus.authnotify.emergency.TimerFragment"
+        android:name="br.pro.mateus.authnotify.emergency.TImerFragment"
         android:label="Timer"
         tools:layout="@layout/fragment_timer">
 
@@ -100,6 +100,9 @@
             android:id="@+id/action_TimerFragment_to_FinalFragment"
             app:destination="@+id/FinalFragment"/>
 
+        <action
+            android:id="@+id/action_TImerFragment_to_ProfileFragment"
+            app:destination="@+id/ProfileFragment"/>
 
     </fragment>
 

@@ -1,6 +1,42 @@
 <resources>
-    <string name="app_name">AuthNotify</string>
+    <string name="app_name">ToothNow</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Strings used in XML -->
+    <string name="Emergency_string">Emergencia</string>
+    <string name="Refuse_string">Recusar</string>
+    <string name="Accept_string">Aceitar</string>
+    <string name="Waiting_Pacient">Aguardando Paciente</string>
+    <string name="Waiting_Timer">Tempo Aguardando</string>
+    <string name="Service_in_progress">Atendimento em progresso</string>
+    <string name="adult_info">Informações do responsável</string>
+    <string name="final_instructions">Quando a consulta for encerrada e\no pagamento for efetuado,\nclique no botão abaixo</string>
+    <string name="Finish_emergency">Encerrar emergencia</string>
+    <string name="send_loc">Enviar sua localização</string>
+    <string name="Yougot_accept">Você foi aceito</string>
+    <string name="or">ou</string>
+    <string name="Receive_loc">Receber localização</string>
+    <string name="Welcome">Bem vindo</string>
+    <string name="Login_account">Entre com a sua conta</string>
+    <string name="Email">Email</string>
+    <string name="passcode">Senha</string>
+    <string name="create_account">Criar minha conta</string>
+    <string name="Log_in">Entrar</string>
+    <string name="Doit">Habilitar</string>
+    <string name="My_account">Minha conta</string>
+    <string name="Available">Disponibilidade</string>
+    <string name="service_addresses">Endereços\nde Atendimento</string>
+    <string name="cv">Breve Currículo</string>
+    <string name="create_account2">Crie a sua conta</string>
+    <string name="Documents">Insira suas informações para criar sua conta</string>
+    <string name="Name">Nome</string>
+    <string name="Phone">Telefone</string>
+    <string name="Address">Endereço 1</string>
+    <string name="Address2">Endereço 2</string>
+    <string name="Address3">Endereço 3</string>
+    <string name="Create_cv">Insira o Curriculo (Max: 500)</string>
+    <string name="Signin">Cadastrar</string>
+    <string name="time_over">Infelizmente não foi dessa vez:/</string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="login_fragment_label">Login</string>

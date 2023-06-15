@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".emergency.TimerFragment"
+    tools:context=".emergency.TImerFragment"
     android:background="@drawable/gradient_background">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
-            android:text="Aguardando Paciente"
+            android:text="@string/Waiting_Pacient"
             android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="Tempo Aguardando:"
+            android:text="@string/Waiting_Timer"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -65,7 +65,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="04m:20s"
                 android:textColor="@color/light_grey"
                 android:textSize="60sp"
                 android:textStyle="bold"
