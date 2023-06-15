@@ -19,6 +19,19 @@ class FinalScreenFragment : Fragment() {
     private var _binding: FragmentFinalScreenBinding? = null
     private val binding get() = _binding!!
 
+    companion object {
+        fun newInstance(name: String?, phone: String?, photo: String?, id: String?): EmergencyFragment {
+            val fragment = EmergencyFragment()
+            val args = Bundle()
+            args.putString("name", name)
+            args.putString("phone", phone)
+            args.putString("foto", photo)
+            args.putString("id", id)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,13 +44,26 @@ class FinalScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val name = arguments?.getString("name")
+        val phone = arguments?.getString("phone")
+
+        binding.tvPacientName.text = name
+        binding.tvPacientNumber.text = phone
+
         binding.btnSendLoc.setOnClickListener {
             //logica por tras do btn
+            //pegar e mandar lag e long para o cliente
         }
 
         binding.btnReceiveLoc.setOnClickListener {
             //logica por tras do btn
+            //pegara lag e long do firebase e jogar no mapa
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

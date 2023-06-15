@@ -69,7 +69,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <TextView
                 android:id="@+id/tvPacientNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
                 android:layout_marginTop="170dp"/>
 
             <Button
-                android:id="@+id/btnSendLoc"
+                android:id="@+id/btnFinish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 

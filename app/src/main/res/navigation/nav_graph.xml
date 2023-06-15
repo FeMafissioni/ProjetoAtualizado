@@ -112,5 +112,20 @@
         android:label="FinalScreen"
         tools:layout="@layout/fragment_final_screen">
 
+        <action
+            android:id="@+id/action_finalFragment_to_endServiceFragment"
+            app:destination="@+id/EndServiceFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/EndServiceFragment"
+        android:name="br.pro.mateus.authnotify.EndServiceFragment"
+        android:label="EndFragment"
+        tools:layout="@layout/fragment_end_service">
+
+        <action
+            android:id="@+id/action_endfragment_to_profile"
+            app:destination="@+id/ProfileFragment"/>
     </fragment>
 </navigation>

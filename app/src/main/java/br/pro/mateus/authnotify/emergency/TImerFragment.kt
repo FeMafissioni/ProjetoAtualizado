@@ -65,4 +65,9 @@ class TImerFragment : Fragment() {
         }
         countDownTimer.start()
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
