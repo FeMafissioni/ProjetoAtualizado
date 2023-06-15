@@ -48,7 +48,7 @@ class TImerFragment : Fragment() {
                     val collection = database.collection("ResultadoEmergencias")
 
                     collection.whereEqualTo("Dentistauid", uid)
-                        .whereEqualTo("status", status) //talvez fazer uma busca tripla para achar tbm a emergencia id para n dar conflito
+                        .whereEqualTo("status", status) //talvez fazer uma busca tripla para achar tbm a emergenciaid para n dar conflito
                         .get()
                         .addOnSuccessListener {
                             findNavController().navigate(R.id.action_TimerFragment_to_FinalFragment)
