@@ -17,6 +17,11 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import br.pro.mateus.authnotify.databinding.ActivityMainBinding
 import br.pro.mateus.authnotify.datastore.UserPreferencesRepository
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseApp
 import com.google.firebase.appcheck.FirebaseAppCheck
@@ -26,7 +31,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.ktx.messaging
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnMapReadyCallback{
 
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -103,6 +108,9 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
+        mapFragment?.getMapAsync(this)
+
         navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -115,6 +123,7 @@ class MainActivity : AppCompatActivity() {
 
         // invocar as permissões para notificar.
         askNotificationPermission();
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -138,4 +147,14 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        googleMap.addMarker(
+            MarkerOptions()
+                .position(LatLng(0.0, 0.0))
+                .title("Marker")
+        )
+    }
+
+
 }

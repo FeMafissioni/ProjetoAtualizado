@@ -71,7 +71,7 @@ class EmergencyFragment : Fragment() {
         binding.btnRefuse.setOnClickListener {
             mandarResposta(false).addOnCompleteListener { result ->
                 if(result.result.status == "SUCCESS"){
-                    findNavController().navigate(R.id.action_EmergencyFragment_to_ProfileFragment)
+                    findNavController().navigate(R.id.action_EmergencyFragment_to_TimerFragment)
                 }else{
                     Snackbar.make(requireView(),"Deu ruim!",Snackbar.LENGTH_LONG).show()
                 }

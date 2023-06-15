@@ -10,20 +10,15 @@ import android.view.inputmethod.InputMethodManager
 import androidx.navigation.fragment.findNavController
 import br.pro.mateus.authnotify.databinding.FragmentLoginBinding
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.recaptcha.RecaptchaException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
 class LoginFragment : Fragment() {
 
-    private lateinit var email: String;
-    private lateinit var password: String;
-    private lateinit var auth: FirebaseAuth;
+    private lateinit var email: String
+    private lateinit var password: String
+    private lateinit var auth: FirebaseAuth
 
     private var _binding: FragmentLoginBinding? = null
 
@@ -47,7 +42,7 @@ class LoginFragment : Fragment() {
         // evento para tratar o login com auth.
         binding.btnLogin.setOnClickListener {
             // antes de tentar o login, implemente as validações.
-            login(binding.etEmail.text.toString(), binding.etPassword.text.toString());
+            login(binding.etEmail.text.toString(), binding.etPassword.text.toString())
         }
 
         binding.btnSignUp.setOnClickListener {
@@ -64,8 +59,8 @@ class LoginFragment : Fragment() {
         email = binding.etEmail.text.toString().trim()
         password = binding.etPassword.text.toString().trim()
 
-        if (!email.isNullOrBlank() && !password.isNullOrBlank()) {
-            login(email!!, password!!)
+        if (!email.isBlank() && !password.isBlank()) {
+            login(email, password)
         }
     }
 
