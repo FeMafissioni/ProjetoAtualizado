@@ -41,20 +41,22 @@ class TImerFragment : Fragment() {
             override fun onTick(remaining: Long) {
                 val secondsRemaing = remaining/1000
                 val uid = FirebaseAuth.getInstance().currentUser?.uid
+                val status = "escolhido"
                 binding.tvTimer.text = secondsRemaing.toString()
                 if(uid!=null){
                     val database = FirebaseFirestore.getInstance()
                     val collection = database.collection("ResultadoEmergencias")
 
-                    collection.whereEqualTo("Dentistauid", uid).get()
+                    collection.whereEqualTo("Dentistauid", uid)
+                        .whereEqualTo("status", status) //talvez fazer uma busca tripla para achar tbm a emergencia id para n dar conflito
+                        .get()
                         .addOnSuccessListener {
-                            for(document in it){
-                                collection.document(document.id)
-                            }
-                        }
-                }
+                            findNavController().navigate(R.id.action_TimerFragment_to_FinalFragment)
+                            countDownTimer.cancel()
 
-            }
+                        }
+                    }
+                }
 
             override fun onFinish() {
                 binding.tvTimer.text = "Infelizmente não foi dessa vez:/"
